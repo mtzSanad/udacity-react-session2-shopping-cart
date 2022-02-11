@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Product.css";
 
-const Product = ({ title, desc }) => {
+const Product = ({ id, title, desc, price, addItemToCart }) => {
   const [quantity, setQuantity] = useState(0);
   console.log(quantity);
 
@@ -13,11 +13,17 @@ const Product = ({ title, desc }) => {
     setQuantity((prevQty) => prevQty - 1);
   };
 
+  const addHandler = (e) => {
+    addItemToCart({ id, quantity });
+  };
+
   return (
     <div className="box">
       <div className="flex-h">
         <div>
-          <p className="prime-text">{title}</p>
+          <p className="prime-text">
+            {title} - [ {price} L.E ]
+          </p>
           <p className="alt-text">{desc}</p>
         </div>
         <div>
@@ -39,7 +45,9 @@ const Product = ({ title, desc }) => {
               +
             </button>
           </div>
-          <button className="btn add-btn">Add to Cart</button>
+          <button className="btn add-btn" onClick={addHandler}>
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>

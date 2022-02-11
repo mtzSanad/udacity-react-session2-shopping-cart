@@ -8,21 +8,40 @@ const productsArray = [
   {
     id: 1,
     title: "Product 1",
+    price: 10,
     desc: "ajlkdsf alksdjflak dflkadsklfjalsdkjfl ",
   },
-  { id: 2, title: "Product 2", desc: "alakjsjlkaj dfalkjdslfkjaldksjfl " },
+  {
+    id: 2,
+    title: "Product 2",
+    price: 20,
+    desc: "alakjsjlkaj dfalkjdslfkjaldksjfl ",
+  },
 ];
 
 function App() {
   const [products, setProducts] = useState(productsArray);
 
+  const [shoppingCart, setShoppingCart] = useState([]);
+
+  const addItemToCart = (item) => {
+    setShoppingCart((prevItems) => [item, ...prevItems]);
+  };
+
   return (
     <>
       <Header />
       <main className="container">
-        <Cart />
+        <Cart shoppingCart={shoppingCart} products={products} />
         {products.map((product) => (
-          <Product key={product.id} title={product.title} desc={product.desc} />
+          <Product
+            key={product.id}
+            id={product.id}
+            title={product.title}
+            desc={product.desc}
+            price={product.price}
+            addItemToCart={addItemToCart}
+          />
         ))}
       </main>
     </>
