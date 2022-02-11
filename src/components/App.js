@@ -2,25 +2,17 @@ import "./App.css";
 import Cart from "./cart/Cart";
 import Header from "./header/Header";
 import Product from "./product/Product";
-import React, { useState } from "react";
-
-const productsArray = [
-  {
-    id: 1,
-    title: "Product 1",
-    price: 10,
-    desc: "ajlkdsf alksdjflak dflkadsklfjalsdkjfl ",
-  },
-  {
-    id: 2,
-    title: "Product 2",
-    price: 20,
-    desc: "alakjsjlkaj dfalkjdslfkjaldksjfl ",
-  },
-];
+import React, { useEffect, useState } from "react";
 
 function App() {
-  const [products, setProducts] = useState(productsArray);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/products")
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
+    console.log(products);
+  }, []);
 
   const [shoppingCart, setShoppingCart] = useState([]);
 

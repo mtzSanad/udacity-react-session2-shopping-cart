@@ -3,7 +3,7 @@ import "./Cart.css";
 
 const Cart = ({ shoppingCart, products }) => {
   const cartView = shoppingCart?.map((item) => {
-    const [product] = products.filter((p) => p.id == item.id);
+    const [product] = products.filter((p) => p.id === item.id);
 
     return (
       <div key={item.id}>
